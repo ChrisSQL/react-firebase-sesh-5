@@ -1,51 +1,45 @@
 import React, { Component } from 'react';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from './firebaseConfig';
-import logo from './logo.svg';
 import './App.css';
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
 
 class App extends Component {
+
   render() {
-    const {
-      user,
-      signOut,
-        signInWithFacebook,
-    } = this.props;
+
+    const responseFacebook = (response) => {
+      console.log(response);
+    }
+
+    const responseGoogle = (response) => {
+      console.log(response);
+    }
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          {
-            user
-              ? <p>Hello, {user.displayName}</p>
-              : <p>Please sign in.</p>
-          }
+        <div className="App">
+          <h1>LOGIN WITH FACEBOOK AND GOOGLE</h1>
 
-          {
-            user
-              ? <button onClick={signOut}>Sign out</button>
-              : <button onClick={signInWithFacebook}>Join the Sesh</button>
+          <FacebookLogin
+              appId="2009920755997639" //APP ID NOT CREATED YET
+              fields="name,email,picture"
+              callback={responseFacebook}
+          />
+          <br />
+          <br />
 
 
-          }
-        </header>
-      </div>
+          <GoogleLogin
+              clientId="" //CLIENTID NOT CREATED YET
+              buttonText="LOGIN WITH GOOGLE"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+          />
+
+        </div>
     );
   }
 }
 
-const firebaseAppAuth = firebaseApp.auth();
-
-const providers = {
-  facebookProvider: new firebase.auth.FacebookAuthProvider(),
-};
-
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(App);
+export default App;

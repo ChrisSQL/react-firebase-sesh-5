@@ -6,11 +6,13 @@
     "firebase": "^5.8.3",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.4",
     "react-scripts": "2.1.5",
     "react-with-firebase-auth": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
